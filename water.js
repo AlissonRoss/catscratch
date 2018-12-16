@@ -1,6 +1,6 @@
 /**
- * Alisson Leiva Salazar
- * Created 12/15/18
+ *  Alisson Leiva Salazar
+ *  Created 12/15/18
  */
 const out = document.getElementById("main");
 
