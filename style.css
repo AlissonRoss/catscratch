@@ -2,6 +2,10 @@
     Alisson Leiva Salazar
     Created 12/15/18
  */
+canvas{
+    background-size: cover;
+    background-image: url("tux.jpg");
+}
 footer{
     text-align: center;
     position: relative;

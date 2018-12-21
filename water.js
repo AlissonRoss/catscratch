@@ -8,16 +8,24 @@ var val1=5;
 var val2=3;
 var val3;
 
-function print(message) {
+/** function print(message) {
     const element = document.createElement("p");
     element.innerText = message;
     out.appendChild(element);
 }
-
-function test(){
-    val3=val1+val2;
-    print(val3);
-    print("Hello World");
+*/
+//function test(){
+    //val3=val1+val2;
+    //print(val3);
+    //print("Hello World");
     
+//}
+
+function draw() {
+    drawCircle(mouseX, mouseY, 20);
+
+    requestAnimationFrame(draw);
 }
-test();
+
+setFillColorByName("aquamarine")
+requestAnimationFrame(draw);
