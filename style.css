@@ -1,11 +1,15 @@
 /*
     Alisson Leiva Salazar
     Created 12/15/18
- */
+*/
+body {
+    margin: 0.5em 0;
+}
 canvas {
     background-size: contain; 
     background-repeat: no-repeat;
     background-position: center;
+    background-clip: content-box;
 }
 footer{
     text-align: center;
@@ -22,9 +26,41 @@ body{
     text-align: left;
     padding: 1em;
     margin: 0;
+    border-radius: 0;
     background-color: pink;
 }
 #shop {
     display: flex;
-    margin: 1em;
+    margin: 0.5em 1em;
 }
+#play-again {
+    padding: 1em;
+    margin: 0 0 0 0.5em;
+    -webkit-appearance: none;
+    background-color: pink;
+    border: medium dashed palevioletred;
+    border-radius: 0;
+}
+#play-again:disabled {
+    opacity: 0.75;
+}
+.cost {
+    color: red;
+}
+
+@media only screen and (max-width: 850px) {
+    #slots {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    canvas {
+        width: calc(50vw - 4px);
+        max-width: 200px;
+        height: calc(50vw - 4px);
+        max-height: 200px;
+        padding: 1px;
+        box-sizing: border-box;
+    }
+  }

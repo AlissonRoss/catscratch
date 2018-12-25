@@ -22,18 +22,9 @@ let score = 0;
 
 function addScore(increment) {
     score += increment;
-    scoreBoard.innerText = "score: " + score;
-    if(score >= 10){
-        playAgainBtn.disabled=false;      
-    } 
-    else{
-        scoreBoard.innerText="LOST";
-        playAgainBtn.disabled=true;  
-    }
+    scoreBoard.innerText = "Score: " + score;
 }
 addScore(50);
-
-
 
 function refreshBoard() {
     for (const canvas of document.querySelectorAll("canvas")) {
@@ -58,8 +49,9 @@ function refreshBoard() {
         context.textAlign = "center";
         context.fillText("Scratch me!", canvas.width / 2, canvas.height / 2);
     
-        //lines are rounded at each end
+        //lines are rounded at each end and 50px wide
         context.lineCap = "round"; //"butt", "round", "square"
+        context.lineWidth = 30;
     
         //further drawing actions will erase the solid coloring from the canvas
         context.globalCompositeOperation = "destination-out"; //erase instead of drawing
@@ -71,10 +63,13 @@ for (const canvas of document.querySelectorAll("canvas")) {
     //drawing commands to perform when a mouse or finger moves
     canvas.oncursormove = function(x, y, prevX, prevY) {
         const context = this.getContext("2d");
-        drawLine(context, 50, prevX, prevY, x, y);
+        context.beginPath();
+        context.moveTo(prevX, prevY);
+        context.lineTo(x, y);
+        context.stroke();
 
         ++canvas.segmentsErased;
-        if (canvas.segmentsErased == 30) {
+        if (canvas.segmentsErased == 20) {
             let matches = 0;
             for (const imageIndex of scratchedImages) {
                 if (imageIndex === canvas.imageIndex) {
@@ -86,12 +81,21 @@ for (const canvas of document.querySelectorAll("canvas")) {
             if (matches > 0) {
                 addScore(Math.pow(10, matches));
             }
+
+            if (scratchedImages.length === 4 && score >= 10) {
+                playAgainBtn.disabled = false;
+            }
         }
     }
 }
 
 playAgainBtn.addEventListener("click", function(event) {
     addScore(-10);
+    if (score < 10) {
+        scoreBoard.innerText = "You lost";
+    }
+    playAgainBtn.disabled = true;  
     scratchedImages.length = 0;
     refreshBoard();
 });
+playAgainBtn.disabled = true;
