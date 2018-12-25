@@ -16,3 +16,15 @@ body{
     text-align: center;
     background-color: aquamarine;
 }
+
+#score-board {
+    flex-grow: 1;
+    text-align: left;
+    padding: 1em;
+    margin: 0;
+    background-color: pink;
+}
+#shop {
+    display: flex;
+    margin: 1em;
+}
