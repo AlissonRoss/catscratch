@@ -9,8 +9,8 @@ const playAgainBtn = document.getElementById("play-again");
 const images = [
     "ali.jpg",
     "flower.jpg",
+    "liz.jpg",
     "me.jpg",
-    "pet1.svg",
     "pizza.jpg",
     "rosquillas.jpg",
     "tem.jpg",
