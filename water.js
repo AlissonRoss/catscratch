@@ -24,8 +24,12 @@ function addScore(increment) {
     score += increment;
 
     scoreBoard.innerText = "score: " + score;
+    if(score < 1){
+        scoreBoard.innerText="LOST";
+        playAgainBtn.disabled="true";
+    }
 }
-addScore(500);
+addScore(50);
 
 
 
