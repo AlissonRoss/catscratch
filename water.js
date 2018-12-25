@@ -22,11 +22,13 @@ let score = 0;
 
 function addScore(increment) {
     score += increment;
-
     scoreBoard.innerText = "score: " + score;
-    if(score < 1){
+    if(score >= 10){
+        playAgainBtn.disabled=false;      
+    } 
+    else{
         scoreBoard.innerText="LOST";
-        playAgainBtn.disabled="true";
+        playAgainBtn.disabled=true;  
     }
 }
 addScore(50);
@@ -87,7 +89,6 @@ for (const canvas of document.querySelectorAll("canvas")) {
         }
     }
 }
-
 
 playAgainBtn.addEventListener("click", function(event) {
     addScore(-10);
