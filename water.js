@@ -3,6 +3,17 @@
  *  Created 12/15/18
  */
 
+const images = [
+    "ali.jpg",
+    "flower.jpg",
+    "me.jpg",
+    "pet1.svg",
+    "pizza.jpg",
+    "rosquillas.jpg",
+    "tem.jpg",
+    "tux.jpg",
+]
+
 for (const canvas of document.querySelectorAll("canvas")) {
     const context = canvas.getContext("2d");
 
@@ -11,6 +22,10 @@ for (const canvas of document.querySelectorAll("canvas")) {
         const context = this.getContext("2d");
         drawLine(context, 30, prevX, prevY, x, y);
     }
+
+    //randomly select a background color
+    const imageIndex = Math.floor(Math.random() * images.length);
+    canvas.style.backgroundImage = `url("${images[imageIndex]}")`;
 
     //completely fill canvas with a solid color
     context.fillStyle = "white";
