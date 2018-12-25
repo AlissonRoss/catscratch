@@ -2,30 +2,31 @@
  *  Alisson Leiva Salazar
  *  Created 12/15/18
  */
-const out = document.getElementById("main");
 
-var val1=5;
-var val2=3;
-var val3;
+for (const canvas of document.querySelectorAll("canvas")) {
+    const context = canvas.getContext("2d");
 
-/** function print(message) {
-    const element = document.createElement("p");
-    element.innerText = message;
-    out.appendChild(element);
-}
-*/
-//function test(){
-    //val3=val1+val2;
-    //print(val3);
-    //print("Hello World");
+    //drawing commands to perform when a mouse or finger movies
+    canvas.oncursormove = function(x, y, prevX, prevY) {
+        const context = this.getContext("2d");
+        drawLine(context, 30, prevX, prevY, x, y);
+    }
+
+    //completely fill canvas with a solid color
+    context.fillStyle = "white";
+    context.rect(0, 0, canvas.width, canvas.height);
+    context.fill();
     
-//}
+    //draw text to suggest desired behavior
+    context.fillStyle = "black";
+    context.font = "30px sans";
+    context.textAlign = "center";
+    context.fillText("Scratch me!", canvas.width / 2, canvas.height / 2);
 
-function draw() {
-    drawCircle(mouseX, mouseY, 20);
+    //lines are rounded at each end
+    context.lineCap = "round"; //"butt", "round", "square"
 
-    requestAnimationFrame(draw);
+    //further drawing actions will erase the solid coloring from the canvas
+    context.globalCompositeOperation = 'destination-out'; //erase instead of drawing
+
 }
-
-setFillColorByName("aquamarine")
-requestAnimationFrame(draw);
