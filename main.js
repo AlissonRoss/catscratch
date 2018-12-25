@@ -77,13 +77,18 @@ for (const canvas of document.querySelectorAll("canvas")) {
                 }
             }
 
-            scratchedImages.push(this.imageIndex);
             if (matches > 0) {
                 addScore(Math.pow(10, matches));
             }
 
-            if (scratchedImages.length === 4 && score >= 10) {
-                playAgainBtn.disabled = false;
+            if (scratchedImages.length === 3) {
+                if (score < 10) {
+                    scoreBoard.innerText = "You lost";
+                } else {
+                    playAgainBtn.disabled = false;
+                }
+            } else {
+                scratchedImages.push(this.imageIndex);
             }
         }
     }
@@ -91,9 +96,6 @@ for (const canvas of document.querySelectorAll("canvas")) {
 
 playAgainBtn.addEventListener("click", function(event) {
     addScore(-10);
-    if (score < 10) {
-        scoreBoard.innerText = "You lost";
-    }
     playAgainBtn.disabled = true;  
     scratchedImages.length = 0;
     refreshBoard();
