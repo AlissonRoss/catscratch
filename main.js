@@ -5,6 +5,7 @@
 
 const scoreBoard = document.getElementById("score-board");
 const playAgainBtn = document.getElementById("play-again");
+const body = document.getElementById("body")
 
 const images = [
     "ali.jpg",
@@ -36,25 +37,32 @@ function refreshBoard() {
         const imageUrl = images[canvas.imageIndex];
         canvas.style.backgroundImage = `url("${imageUrl}")`;
     
+        //drawing adds to the screen rather than erasing from it
         context.globalCompositeOperation = "source-over";
     
         //completely fill canvas with a solid color
         context.fillStyle = "white";
         context.rect(0, 0, canvas.width, canvas.height);
         context.fill();
-        
+
+        //Shadows
+        context.shadowColor= 'rgb(61, 143, 109)';
+        context.shadowOffsetX=10;
+        context.shadowOffsetY=10;
+        context.shadowBlur=5;
+
         //draw text to suggest desired behavior
         context.fillStyle = "black";
         context.font = "30px sans";
         context.textAlign = "center";
         context.fillText("Scratch me!", canvas.width / 2, canvas.height / 2);
     
-        //lines are rounded at each end and 50px wide
+        //lines are rounded at each end and 30px wide
         context.lineCap = "round"; //"butt", "round", "square"
         context.lineWidth = 30;
-    
+        
         //further drawing actions will erase the solid coloring from the canvas
-        context.globalCompositeOperation = "destination-out"; //erase instead of drawing
+        context.globalCompositeOperation = "destination-out";
     }
 }
 refreshBoard();
@@ -80,14 +88,20 @@ for (const canvas of document.querySelectorAll("canvas")) {
             if (matches > 0) {
                 addScore(Math.pow(10, matches));
             }
+            if (matches === 3) {
+                scoreBoard.classList.add("jackpot");
+            }
 
             if (scratchedImages.length === 3) {
                 if (score < 10) {
-                    scoreBoard.innerText = "You lost";
-                } else {
+                    scoreBoard.innerText = "You Lost";
+                    scoreBoard.classList.add("lost");
+                } 
+                else {
                     playAgainBtn.disabled = false;
                 }
-            } else {
+            } 
+            else {
                 scratchedImages.push(this.imageIndex);
             }
         }
@@ -96,8 +110,9 @@ for (const canvas of document.querySelectorAll("canvas")) {
 
 playAgainBtn.addEventListener("click", function(event) {
     addScore(-10);
-    playAgainBtn.disabled = true;  
+    playAgainBtn.disabled = true;
     scratchedImages.length = 0;
+    scoreBoard.classList.remove("jackpot");
     refreshBoard();
 });
 playAgainBtn.disabled = true;

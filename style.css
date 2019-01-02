@@ -2,23 +2,23 @@
     Alisson Leiva Salazar
     Created 12/15/18
 */
-body {
+body{
     margin: 0.5em 0;
+    text-align: center;
+    background-color: aquamarine;
+    background-image: linear-gradient(to left, aquamarine , rgba(255, 255, 102, 0.87))
 }
 canvas {
     background-size: contain; 
     background-repeat: no-repeat;
     background-position: center;
     background-clip: content-box;
+    box-shadow: 2px 2px rgb(61, 143, 109);   
 }
 footer{
     text-align: center;
     position: relative;
     margin-top: 2em;
-}
-body{
-    text-align: center;
-    background-color: aquamarine;
 }
 
 #score-board {
@@ -28,6 +28,18 @@ body{
     margin: 0;
     border-radius: 0;
     background-color: pink;
+}
+#score-board.lost {
+    color: red;
+}
+#score-board.jackpot {
+    color: magenta;
+    font-size: 15px;
+    text-shadow: 2px 2px rgb(61, 143, 109);
+}
+#score-board.jackpot:after {
+    white-space: pre;
+    content: "\aJACKPOT!"
 }
 #shop {
     display: flex;
@@ -52,7 +64,7 @@ body{
     #slots {
         width: 100vw;
         padding: 0;
-        margin: 0;
+        margin: 0;   
     }
 
     canvas {
@@ -62,5 +74,6 @@ body{
         max-height: 200px;
         padding: 1px;
         box-sizing: border-box;
+        box-shadow: 2px 2px rgb(61, 143, 109);   
     }
   }
